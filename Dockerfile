@@ -11,7 +11,7 @@ WORKDIR /wwwroot
 ENV NODE_ENV=production
 
 # 安装时区依赖并配置时区
-RUN apk add --no-cache tzdata \
+RUN apk add --no-cache bash tzdata \
 && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 && echo "Asia/Shanghai" > /etc/timezone
 
