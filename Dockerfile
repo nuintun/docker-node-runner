@@ -1,4 +1,4 @@
-# 定义构建参数 NODE_VERSION，默认值为 22-alpine
+# 定义构建参数 NODE_VERSION，默认值为 alpine
 ARG NODE_VERSION=alpine
 
 # 使用指定的 Node.js Alpine 镜像作为基础镜像
