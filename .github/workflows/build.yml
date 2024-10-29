@@ -38,7 +38,7 @@ jobs:
 
       # 导出 Docker 镜像到 tar 文件
       - name: Save Docker image as tar
-        run: docker save node-runner:${{ env.NODE_VERSION }} -o node-runner-${{ env.NODE_VERSION }}.tar
+        run: docker save node-runner:${{ env.NODE_VERSION }} -o ${{ runner.temp }}/node-runner-${{ env.NODE_VERSION }}.tar
 
       # 上传导出的镜像作为构建工件
       - name: Upload image tar as artifact
@@ -47,4 +47,4 @@ jobs:
           # 文件保留天数
           retention-days: 1
           name: node-runner-${{ env.NODE_VERSION }}.tar
-          path: node-runner-${{ env.NODE_VERSION }}.tar
+          path: ${{ runner.temp }}/node-runner-${{ env.NODE_VERSION }}.tar
