@@ -1,18 +1,24 @@
 name: Build and Export Docker Image
 
 on:
-  workflow_dispatch: # 手动触发事件
+  # 手动触发事件
+  workflow_dispatch:
     inputs:
-      node_version: # 定义 node 版本输入参数
-        default: 'alpine' # 提供默认值
-        required: true # 确保输入参数是必需的
+      # 定义 node 版本输入参数
+      node_version:
+        # 版本必填
+        required: true
+        # 提供版本默认值
+        default: 'alpine'
+        # 版本参数输入描述
         description: '请输入 Node Docker 镜像版本！'
 
 jobs:
   build-and-export:
     runs-on: ubuntu-latest
     env:
-      NODE_VERSION: ${{ github.event.inputs.node_version }} # 设置环境变量
+      # 设置环境变量
+      NODE_VERSION: ${{ github.event.inputs.node_version }}
 
     steps:
       # 检出代码
@@ -28,17 +34,15 @@ jobs:
 
       # 构建 Docker 镜像
       - name: Build Docker image
-        run: |
-          docker build -t node-runner:$NODE_VERSION --build-arg NODE_VERSION=$NODE_VERSION .
+        run: docker build -t node-runner:${{ env.NODE_VERSION }} --build-arg NODE_VERSION=${{ env.NODE_VERSION }} .
 
       # 导出 Docker 镜像到 tar 文件
       - name: Save Docker image as tar
-        run: |
-          docker save node-runner:$NODE_VERSION -o node-runner-$NODE_VERSION.tar
+        run: docker save node-runner:${{ env.NODE_VERSION }} -o node-runner-${{ env.NODE_VERSION }}.tar
 
       # 上传导出的镜像作为构建工件
       - name: Upload image tar as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: node-runner-$NODE_VERSION
-          path: node-runner-$NODE_VERSION.tar
+          name: node-runner-${{ env.NODE_VERSION }}
+          path: node-runner-${{ env.NODE_VERSION }}.tar
