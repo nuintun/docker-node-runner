@@ -44,5 +44,7 @@ jobs:
       - name: Upload image tar as artifact
         uses: actions/upload-artifact@v4
         with:
+          # 文件保留天数
+          retention-days: 1
           name: node-runner-${{ env.NODE_VERSION }}.tar
           path: node-runner-${{ env.NODE_VERSION }}.tar
