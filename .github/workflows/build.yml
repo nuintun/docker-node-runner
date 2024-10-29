@@ -29,16 +29,16 @@ jobs:
       # 构建 Docker 镜像
       - name: Build Docker image
         run: |
-          docker build -t node-runner:${NODE_VERSION} --build-arg NODE_VERSION=${NODE_VERSION} .
+          docker build -t node-runner:$NODE_VERSION --build-arg NODE_VERSION=$NODE_VERSION .
 
       # 导出 Docker 镜像到 tar 文件
       - name: Save Docker image as tar
         run: |
-          docker save node-runner:${NODE_VERSION} -o node-runner-${NODE_VERSION}.tar
+          docker save node-runner:$NODE_VERSION -o node-runner-$NODE_VERSION.tar
 
       # 上传导出的镜像作为构建工件
       - name: Upload image tar as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: node-runner-${NODE_VERSION}
-          path: node-runner-${NODE_VERSION}.tar
+          name: node-runner-$NODE_VERSION
+          path: node-runner-$NODE_VERSION.tar
