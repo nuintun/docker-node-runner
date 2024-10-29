@@ -1,5 +1,8 @@
-# 使用官方 Node.js Alpine 镜像作为基础镜像
-FROM node:22-alpine
+# 定义构建参数 NODE_VERSION，默认值为 22-alpine
+ARG NODE_VERSION=alpine
+
+# 使用指定的 Node.js Alpine 镜像作为基础镜像
+FROM node:${NODE_VERSION}
 
 # 配置工作目录
 WORKDIR /wwwroot
