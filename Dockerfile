@@ -15,6 +15,9 @@ RUN apk add --no-cache bash tzdata \
 && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 && echo "Asia/Shanghai" > /etc/timezone
 
+# 显示实际安装 Node 版本
+RUN node -v
+
 # 配置默认端口
 EXPOSE 8080
 
