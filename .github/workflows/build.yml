@@ -1,5 +1,4 @@
 name: Build and Export Docker Image
-
 on:
   # 手动触发事件
   workflow_dispatch:
@@ -12,34 +11,28 @@ on:
         default: 'alpine'
         # 版本参数输入描述
         description: '请输入 Node 镜像版本！'
-
 jobs:
   build-and-export:
     runs-on: ubuntu-latest
     env:
       # 设置环境变量
       NODE_VERSION: ${{ github.event.inputs.node_version }}
-
     steps:
       # 检出代码
       - name: Checkout code
         uses: actions/checkout@v4
-
       # 登录 Docker Hub（如果需要）
       # - name: Log in to Docker Hub
       #   uses: docker/login-action@v3
       #   with:
       #     username: ${{ secrets.DOCKER_USERNAME }}
       #     password: ${{ secrets.DOCKER_PASSWORD }}
-
       # 构建 Docker 镜像
       - name: Build Docker image
         run: docker build -t node-runner:${{ env.NODE_VERSION }} --build-arg NODE_VERSION=${{ env.NODE_VERSION }} .
-
       # 导出 Docker 镜像到 tar 文件
       - name: Save Docker image as tar
         run: docker save node-runner:${{ env.NODE_VERSION }} -o ${{ runner.temp }}/node-runner-${{ env.NODE_VERSION }}.tar
-
       # 上传导出的镜像作为构建工件
       - name: Upload image tar as artifact
         uses: actions/upload-artifact@v4
