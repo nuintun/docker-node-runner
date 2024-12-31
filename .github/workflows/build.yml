@@ -1,4 +1,4 @@
-name: Build and Export Docker Image
+name: Build and export docker image
 on:
   # 手动触发事件
   workflow_dispatch:
@@ -28,10 +28,10 @@ jobs:
       #     username: ${{ secrets.DOCKER_USERNAME }}
       #     password: ${{ secrets.DOCKER_PASSWORD }}
       # 构建 Docker 镜像
-      - name: Build Docker image
+      - name: Build docker image
         run: docker build -t node-runner:${{ env.NODE_VERSION }} --build-arg NODE_VERSION=${{ env.NODE_VERSION }} .
       # 导出 Docker 镜像到 tar 文件
-      - name: Save Docker image as tar
+      - name: Save docker image as tar
         run: docker save node-runner:${{ env.NODE_VERSION }} -o ${{ runner.temp }}/node-runner-${{ env.NODE_VERSION }}.tar
       # 上传导出的镜像作为构建工件
       - name: Upload image tar as artifact
