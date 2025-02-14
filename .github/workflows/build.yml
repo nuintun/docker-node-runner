@@ -8,9 +8,9 @@ on:
         # 版本必填
         required: true
         # 提供版本默认值
-        default: 'alpine'
+        default: alpine
         # 版本参数输入描述
-        description: '请输入 Node 镜像版本！'
+        description: 请输入 Node 镜像版本！
 jobs:
   build-and-export:
     runs-on: ubuntu-latest
