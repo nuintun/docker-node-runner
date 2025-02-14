@@ -22,6 +22,8 @@ on:
 jobs:
   build-node-runner:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       # 设置环境变量
       DOCKER_BUILD_RECORD_RETENTION_DAYS: 1
