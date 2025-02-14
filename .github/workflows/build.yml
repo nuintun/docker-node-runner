@@ -19,10 +19,10 @@ on:
         default: Asia/Shanghai
         # 主机时区参数输入描述
         description: 请输入主机时区
-  env:
-    # 设置环境变量
-    IMAGE_TAG: 'node-runner:${{ inputs.node_version }}'
-    IMAGE_FILE: 'node-runner-${{ inputs.node_version }}.tar'
+env:
+  # 设置环境变量
+  IMAGE_TAG: 'node-runner:${{ inputs.node_version }}'
+  IMAGE_FILE: 'node-runner-${{ inputs.node_version }}.tar'
 jobs:
   build:
     runs-on: ubuntu-latest
