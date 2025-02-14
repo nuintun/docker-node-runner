@@ -19,13 +19,13 @@ on:
         default: Asia/Shanghai
         # 主机时区参数输入描述
         description: 请输入主机时区
+  env:
+    # 设置环境变量
+    IMAGE_TAG: 'node-runner:${{ inputs.node_version }}'
+    IMAGE_FILE: 'node-runner-${{ inputs.node_version }}.tar'
 jobs:
-  build-and-export:
+  build:
     runs-on: ubuntu-latest
-    env:
-      # 设置环境变量
-      IMAGE_TAG: 'node-runner:${{ inputs.node_version }}'
-      IMAGE_FILE: 'node-runner-${{ inputs.node_version }}.tar'
     steps:
       # 检出代码
       - name: Checkout code
@@ -55,6 +55,10 @@ jobs:
           cache-to: type=local,dest=${{ runner.temp }}/.buildx
           cache-from: type=local,src=${{ runner.temp }}/.buildx
           outputs: type=docker,dest=${{ runner.temp }}/${{ env.IMAGE_FILE }}
+  export:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       # 上传导出的镜像作为构建工件
       - name: Upload image tar as artifact
         uses: actions/upload-artifact@v4
