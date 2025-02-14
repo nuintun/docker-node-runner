@@ -1,4 +1,4 @@
-name: Build and export docker image
+name: Build node runner
 on:
   # 手动触发事件
   workflow_dispatch:
@@ -20,7 +20,7 @@ on:
         # 主机时区参数输入描述
         description: 请输入主机时区
 jobs:
-  build-and-export:
+  build node runner:
     runs-on: ubuntu-latest
     env:
       # 设置环境变量
@@ -37,7 +37,7 @@ jobs:
           driver-opts: |
             image=moby/buildkit:master
       # 构建 Docker 镜像文件
-      - name: Build and export docker image
+      - name: Build node runner
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -49,7 +49,7 @@ jobs:
           cache-from: type=local,src=${{ runner.temp }}/.buildx
           outputs: type=docker,dest=${{ runner.temp }}/${{ env.IMAGE_FILE }}
       # 上传导出的镜像作为构建工件
-      - name: Upload image tar as artifact
+      - name: Upload node runner
         uses: actions/upload-artifact@v4
         with:
           # 文件保留天数
