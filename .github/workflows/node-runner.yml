@@ -20,7 +20,7 @@ on:
         # 主机时区参数输入描述
         description: 请输入主机时区
 jobs:
-  build node runner:
+  build-node-runner:
     runs-on: ubuntu-latest
     env:
       # 设置环境变量
