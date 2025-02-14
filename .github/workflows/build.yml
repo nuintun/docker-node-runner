@@ -36,15 +36,8 @@ jobs:
         with:
           driver-opts: |
             image=moby/buildkit:master
-      # 设置 Docker 构建缓存
-      # - name: Cache docker layers
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: ${{ runner.temp }}/.buildx
-      #     restore-keys: ${{ runner.os }}-buildx-
-      #     key: ${{ runner.os }}-buildx-${{ github.sha }}
       # 构建 Docker 镜像文件
-      - name: Build docker image
+      - name: Build and export docker image
         uses: docker/build-push-action@v6
         with:
           context: .
