@@ -48,11 +48,11 @@ jobs:
           cache-to: type=local,dest=${{ runner.temp }}/.buildx
           cache-from: type=local,src=${{ runner.temp }}/.buildx
           outputs: type=docker,dest=${{ runner.temp }}/${{ env.IMAGE_FILE }}
-      # 上传导出的镜像作为构建工件
-      - name: Upload node runner
-        uses: actions/upload-artifact@v4
-        with:
-          # 文件保留天数
-          retention-days: 1
-          name: ${{ env.IMAGE_FILE }}
-          path: ${{ runner.temp }}/${{ env.IMAGE_FILE }}
+      # # 上传导出的镜像作为构建工件
+      # - name: Upload node runner
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     # 文件保留天数
+      #     retention-days: 1
+      #     name: ${{ env.IMAGE_FILE }}
+      #     path: ${{ runner.temp }}/${{ env.IMAGE_FILE }}
