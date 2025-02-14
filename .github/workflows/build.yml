@@ -24,7 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # 设置环境变量
-      BUILD_CACHE_DIR: '${{ runner.temp }}/.buildx'
       IMAGE_TAG: 'node-runner:${{ inputs.node_version }}'
       IMAGE_FILE: 'node-runner-${{ inputs.node_version }}.tar'
     steps:
@@ -41,7 +40,7 @@ jobs:
       - name: Cache docker layers
         uses: actions/cache@v4
         with:
-          path: ${{ env.BUILD_CACHE_DIR }}
+          path: ${{ runner.temp }}/.buildx
           restore-keys: ${{ runner.os }}-buildx-
           key: ${{ runner.os }}-buildx-${{ github.sha }}
       # 构建 Docker 镜像文件
@@ -53,8 +52,8 @@ jobs:
           build-args: |
             NODE_VERSION=${{ inputs.node_version }}
             HOST_TIMEZONE=${{ inputs.host_timezone }}
-          cache-to: type=local,dest=${{ env.BUILD_CACHE_DIR }}
-          cache-from: type=local,src=${{ env.BUILD_CACHE_DIR }}
+          cache-to: type=local,dest=${{ runner.temp }}/.buildx
+          cache-from: type=local,src=${{ runner.temp }}/.buildx
           outputs: type=docker,dest=${{ runner.temp }}/${{ env.IMAGE_FILE }}
       # 上传导出的镜像作为构建工件
       - name: Upload image tar as artifact
