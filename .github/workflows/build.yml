@@ -24,11 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # 设置环境变量
-      BUILD_CACHE_DIR: ${{ runner.temp }}/.buildx-cache
-      NODE_VERSION: ${{ github.event.inputs.node_version }}
-      HOST_TIMEZONE: ${{ github.event.inputs.host_timezone }}
-      IMAGE_TAG: node-runner:${{ github.event.inputs.node_version }}
-      IMAGE_FILE: node-runner-${{ github.event.inputs.node_version }}.tar
+      BUILD_CACHE_DIR: '${{ runner.temp }}/.buildx'
+      IMAGE_TAG: 'node-runner:${{ inputs.node_version }}'
+      IMAGE_FILE: 'node-runner-${{ inputs.node_version }}.tar'
     steps:
       # 检出代码
       - name: Checkout code
@@ -53,8 +51,8 @@ jobs:
           context: .
           tags: ${{ env.IMAGE_TAG }}
           build-args: |
-            NODE_VERSION=${{ env.NODE_VERSION }}
-            HOST_TIMEZONE=${{ env.HOST_TIMEZONE }}
+            NODE_VERSION=${{ inputs.node_version }}
+            HOST_TIMEZONE=${{ inputs.host_timezone }}
           cache-to: type=local,dest=${{ env.BUILD_CACHE_DIR }}
           cache-from: type=local,src=${{ env.BUILD_CACHE_DIR }}
           outputs: type=docker,dest=${{ runner.temp }}/${{ env.IMAGE_FILE }}
