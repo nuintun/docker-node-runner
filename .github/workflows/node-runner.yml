@@ -26,7 +26,6 @@ jobs:
       contents: read
     env:
       # 设置环境变量
-      DOCKER_BUILD_RECORD_RETENTION_DAYS: 1
       IMAGE_TAG: node-runner:${{ inputs.node_version }}
       IMAGE_FILE: node-runner-${{ inputs.node_version }}.tar
     steps:
