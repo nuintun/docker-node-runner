@@ -14,7 +14,7 @@ NODE_ENV=production
 # 配置工作目录
 WORKDIR /wwwroot
 
-# 安装时区依赖并配置时区
+# 配置时区并输出 Node 版本
 RUN apk add --no-cache bash tzdata \
 && cp /usr/share/zoneinfo/${TZ} /etc/localtime \
 && echo "${TZ}" > /etc/timezone
@@ -23,5 +23,5 @@ RUN apk add --no-cache bash tzdata \
 # 配置默认端口
 EXPOSE 8080
 
-# 运行项目
+# 配置运行命令
 CMD ["npm", "start"]
