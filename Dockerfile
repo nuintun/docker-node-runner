@@ -13,8 +13,8 @@ NODE_ENV=production
 
 # 安装时区依赖并配置时区
 RUN apk add --no-cache bash tzdata \
-&& cp /usr/share/zoneinfo/${HOST_TIMEZONE} /etc/localtime \
-&& echo "${HOST_TIMEZONE}" > /etc/timezone
+&& cp /usr/share/zoneinfo/${TZ} /etc/localtime \
+&& echo "${TZ}" > /etc/timezone
 && echo "Node: $(node -v)"
 
 # 配置工作目录
