@@ -17,7 +17,7 @@ WORKDIR /wwwroot
 # 配置时区并输出 Node 版本
 RUN apk add --no-cache bash tzdata \
 && cp /usr/share/zoneinfo/${TZ} /etc/localtime \
-&& echo "${TZ}" > /etc/timezone
+&& echo "${TZ}" > /etc/timezone \
 && echo "Node: $(node -v)"
 
 # 配置默认端口
