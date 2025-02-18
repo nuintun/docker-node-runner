@@ -11,14 +11,14 @@ ARG HOST_TIMEZONE=Asia/Shanghai
 ENV TZ=${HOST_TIMEZONE} \
 NODE_ENV=production
 
+# 配置工作目录
+WORKDIR /wwwroot
+
 # 安装时区依赖并配置时区
 RUN apk add --no-cache bash tzdata \
 && cp /usr/share/zoneinfo/${TZ} /etc/localtime \
 && echo "${TZ}" > /etc/timezone
 && echo "Node: $(node -v)"
-
-# 配置工作目录
-WORKDIR /wwwroot
 
 # 配置默认端口
 EXPOSE 8080
