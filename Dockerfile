@@ -9,7 +9,7 @@ ARG HOST_TIMEZONE=Asia/Shanghai
 
 # 配置环境变量
 ENV TZ=${HOST_TIMEZONE} \
-NODE_ENV=production
+NODE_ENV=production \
 PORT=8080
 
 # 配置工作目录
