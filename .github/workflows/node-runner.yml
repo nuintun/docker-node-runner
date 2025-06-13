@@ -10,7 +10,7 @@ on:
         # 提供镜像版本默认值
         default: alpine
         # 镜像版本参数输入描述
-        description: 请输入镜像版本
+        description: Use node version
       # 定义时区输入参数
       host_timezone:
         # 主机时区必填
@@ -18,7 +18,7 @@ on:
         # 提供主机时区默认值
         default: Asia/Shanghai
         # 主机时区参数输入描述
-        description: 请输入主机时区
+        description: Set host timezone
 jobs:
   build-node-runner:
     runs-on: ubuntu-latest
