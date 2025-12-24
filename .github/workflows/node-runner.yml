@@ -51,7 +51,7 @@ jobs:
           outputs: type=docker,dest=${{ runner.temp }}/${{ env.IMAGE_FILE }}
       # 上传导出的镜像
       - name: Upload node runner
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.IMAGE_FILE }}
           path: ${{ runner.temp }}/${{ env.IMAGE_FILE }}
