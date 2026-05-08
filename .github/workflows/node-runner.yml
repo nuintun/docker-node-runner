@@ -34,13 +34,13 @@ jobs:
         uses: actions/checkout@v6
       # 初始化 Docker 构建工具
       - name: Setup docker buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
         with:
           driver-opts: |
             image=moby/buildkit:master
       # 构建 Docker 镜像文件
       - name: Build node runner
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           no-cache: true
