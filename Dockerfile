@@ -15,6 +15,9 @@ PORT=8080
 # 配置工作目录
 WORKDIR /wwwroot
 
+# 复制工作目录
+COPY packages/wwwroot/ .
+
 # 配置时区并输出 Node 版本
 RUN apk add --no-cache bash tzdata \
 && cp /usr/share/zoneinfo/${TZ} /etc/localtime \

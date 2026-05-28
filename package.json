@@ -1,0 +1,11 @@
+{
+  "name": "docker-node-runner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "pnpm -r start"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1"
+  }
+}
