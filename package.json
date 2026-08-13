@@ -3,9 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "format": "oxfmt",
     "start": "pnpm -r start"
   },
   "devDependencies": {
-    "@types/node": "^25.9.1"
+    "@types/node": "^26.2.0",
+    "oxfmt": "^0.63.0",
+    "typescript": "^7.0.2"
   }
 }
